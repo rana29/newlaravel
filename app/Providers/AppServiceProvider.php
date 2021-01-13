@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\view;
+use App\Models\catagory;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +26,10 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        //
+    {    
+        Schema::defaultStringLength(191);
+        $catagory=catagory::select('id','name')->get();
+        view::share('catagory',$catagory);
+       
     }
 }
